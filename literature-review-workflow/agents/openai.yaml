@@ -1,0 +1,4 @@
+interface:
+  display_name: "Literature Review Workflow"
+  short_description: "Run literature review workflows end to end."
+  default_prompt: "Use $literature-review-workflow to build a concise, source-traceable literature review and final deliverable."

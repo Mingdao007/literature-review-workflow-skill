@@ -1,7 +1,13 @@
 ---
 name: literature-review-workflow
-description: "Plan and execute an end-to-end literature review workflow: define scope, build and screen a paper corpus, classify papers into a stable taxonomy, extract evidence into comparison matrices, audit claims and citations, and prepare review deliverable content. Use when the user asks to survey recent papers, write a literature review, compare methods, prepare review-deck content, or choose a research direction from papers."
+description: "Plan and execute an end-to-end literature review workflow: define scope, build and screen a paper corpus, classify papers into a stable taxonomy, extract evidence into comparison matrices, audit claims and citations, and prepare review deliverable content. Use when the user asks to survey recent papers, write a literature review, compare methods, do paper-by-paper review maintenance, prepare review-deck content, or choose a research direction from papers."
 ---
+
+Trigger note: Use when the user asks to do a literature review, survey papers,
+compare methods, build a reading list, maintain review notes, or update a
+review deck. Examples include `做个文献综述`, `survey recent papers on force
+control`, `compare methods in this area`, `literature review`, `帮我调研一下这个方向`,
+`按 paper-by-paper 重写`, and `维护 review deck`.
 
 # Literature Review Workflow
 
@@ -25,11 +31,18 @@ Default outputs:
 6. source log
 7. prepared final-deliverable content or deck handoff package
 
-Default public package assumptions:
+For this user:
 
+- converse in Chinese
+- internal written reviews default to Chinese unless the user explicitly fixes another language or the existing artifact language is already fixed
 - keep wording concise
 - prefer tables, matrices, timelines, and diagrams over long prose
-- final deliverables should read like user-authored work rather than assistant-authored narration
+- for robot contact-control reviews, prefer `force-first` and `compliance-first` as the default top-level split unless the user overrides it
+- treat edge papers as `supporting`, `adjacent`, or `exclude`; do not force them into the mainline taxonomy
+- ready-to-send reviews are user-authored deliverables: the author and default speaker are the user, not the assistant
+- written reviews default to neutral authorial prose such as `本文聚焦...`, `更合理的判断是...`; do not default to assistant-self-reference such as `我建议`
+- speaker notes or oral scripts default to first-person user voice only when the deliverable is explicitly meant to be spoken
+- avoid AI-smelling phrases in final deliverables such as `reviewer synthesis`, `as an AI`, `I searched`, `for the current user`, or process filler that exposes workflow rather than content
 
 ## Trigger Conditions
 
@@ -39,13 +52,14 @@ Use this skill when the user asks to:
 - read recent papers in a field
 - compare methods across papers
 - build a taxonomy
+- maintain paper-by-paper review notes or paper-by-paper explanation artifacts
 - prepare a group-meeting or advisor-meeting review deck
 - choose a research direction from papers
 
 Do not use this skill for:
 
 - single-paper explanation only
-- reference-manager library maintenance only
+- Zotero library maintenance only
 - pure slide design work with no review workflow
 
 ## Canonical Workflow
@@ -71,9 +85,9 @@ If the user already fixed these, record them and continue.
 Start from the strongest local sources first:
 
 - existing review notes
-- local `~/reference-manager/storage` attachments
+- local `~/Zotero/storage` attachments
 - local PDF text cache such as `.zotero-ft-cache`
-- reference-manager / metadata tooling for structured metadata or when local attachments are not
+- Zotero / Zotero MCP for structured metadata or when local attachments are not
   found
 
 Use web lookup only when a fact is time-sensitive or unstable, such as:
@@ -186,7 +200,9 @@ For written reviews:
 - open with the final taxonomy
 - then compare anchor papers
 - then state gaps and candidate directions
-- before every user-visible iteration report on review or report deliverables, run `python3 $CODEX_HOME/skills/ai-detect/scripts/scan_ai_smell.py <file>` on the edited `.tex` / `.md` source files, keep only high-confidence findings after human review, and rerun once after any wording fix
+- keep editable review source and work files in the normal local research or course workspace; when Zotero `Reviews` handling is in scope, mirror only the final PDF into Zotero and do not place `.tex`, `.md`, `.bib`, build folders, render checks, or other source artifacts there
+- before every user-visible iteration report on review or report deliverables, run `python3 ~/.codex/skills/ai-detect/scripts/scan_ai_smell.py <file>` on the edited `.tex` / `.md` source files, keep only high-confidence findings after human review, and rerun once after any wording fix
+- when the review has a rendered PDF artifact, run [$visual-deliverable-check](/Users/andyl/.codex/skills/visual-deliverable-check/SKILL.md) before reporting the artifact as ready
 
 For slides:
 
@@ -194,6 +210,8 @@ For slides:
 - hand off final slide authoring to `academic-presentation`
 - one idea per slide
 - no process narration such as “how I searched” unless the user asks for it
+- default to a minimal title page: keep the main title plus one short course/topic line unless the user explicitly wants author, institution, or subtitle metadata
+- when a scope slide is needed, avoid AI-sounding setup labels such as `Working scope` or `Mainline corpus`; prefer one or two direct human sentences
 - use in-body citations on content slides
 - if citations become dense, add one or more dedicated reference slides
 - prioritize readable spacing and balanced whitespace over a fixed font-size rule
@@ -203,13 +221,16 @@ For slides:
 - on reference slides, use `author + year + full paper title`; venue is optional but must be consistent if included
 - if both Beamer and PPTX are maintained, keep slide order and content synchronized
 - compile only the requested artifacts; if the user only asks to update PPTX content, do not rebuild LaTeX, and if the user only asks to rebuild LaTeX, do not auto-export PPTX
-- do not surface internal workflow markers such as reference-manager collection names, internal reading IDs like `F1` / `C1`, or “current collection” wording in advisor-facing deck copy
+- do not surface internal workflow markers such as Zotero collection names, internal reading IDs like `F1` / `C1`, or “current collection” wording in advisor-facing deck copy
 - if a paper title appears on a content slide, use the full paper title in Title Case and append a compact tag such as `25TRO` without parentheses when space allows
 - ordinary slide titles should stay in sentence case unless the slide title itself is a full paper title
 - prefer flat bullet points and one point per line over dense prose paragraphs
 - if a structure slide becomes crowded, split the slide before shrinking the font aggressively
+- when a paper genuinely serves more than one mechanism line, keep one primary line placement and at most a light secondary-relevance cue; do not duplicate it as another main anchor page
+- for slide-iteration QA, check the rendered PDF pages themselves; do not treat successful compilation or log cleanliness as sufficient evidence that the visual layout is acceptable
+- use [$visual-deliverable-check](/Users/andyl/.codex/skills/visual-deliverable-check/SKILL.md) as the default final visual gate for rendered review decks
 - treat the slide outline, citations, and evidence matrix as the source package for `academic-presentation`
-- before every user-visible iteration report on deck or source-log deliverables, run `python3 $CODEX_HOME/skills/ai-detect/scripts/scan_ai_smell.py <file>` on the edited deck-authoring or log source files, not on `.pptx` or rendered images; if high-risk wording is found, revise and rerun before handoff
+- before every user-visible iteration report on deck or source-log deliverables, run `python3 ~/.codex/skills/ai-detect/scripts/scan_ai_smell.py <file>` on the edited deck-authoring or log source files, not on `.pptx` or rendered images; if high-risk wording is found, revise and rerun before handoff
 
 ### 8. Audit before handoff
 
@@ -240,7 +261,7 @@ Apply these defaults unless the user overrides them:
 - reference formatting should be uniform; full paper titles are preferred over shorthand
 - intermediate build clutter should stay outside the final deliverable folder when possible
 - when the user has already fixed a mature taxonomy, update existing review artifacts to that taxonomy instead of inventing a new split each time
-- for advisor-facing review decks, speak about the field and the method structure, not about reference-manager, collections, or internal bookkeeping
+- for advisor-facing review decks, speak about the field and the method structure, not about Zotero, collections, or internal bookkeeping
 - in final deliverables, the user is the first responsible author and default first speaker; never write as if the assistant is the author
 - when a deliverable needs a viewpoint sentence, prefer neutral formulations like `本文主张...`, `当前阶段更合理的选择是...`, or `这里更值得优先考虑...`
 - if a working matrix needs a synthesis column, call it `author synthesis` or `作者综合判断`; do not surface `reviewer synthesis` in the final deliverable
@@ -260,7 +281,7 @@ Use `scripts/init_review_workspace.py` when the user wants a clean review worksp
 If the user wants a new workspace, run:
 
 ```bash
-python3 $CODEX_HOME/skills/literature-review-workflow/scripts/init_review_workspace.py <target_dir>
+python3 ~/.codex/skills/literature-review-workflow/scripts/init_review_workspace.py <target_dir>
 ```
 
 Then fill the scaffold in this order:

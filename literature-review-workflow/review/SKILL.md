@@ -63,3 +63,11 @@ Use this subskill under `literature-review-workflow` when the final product is a
 4. Did any `reviewer synthesis` wording leak into the final deliverable?
 5. Does the close answer the actual decision question instead of narrating process?
 6. Did the latest authoring source pass the `ai-detect` iteration gate before handoff?
+
+
+## Validation And Checkpoints
+
+- Before final handoff, validate the requested artifact or decision against this skill's output contract and report the verification result explicitly.
+- Before any local mutation, pass the recoverability gate: create a rollback point when the change is reversible, and request confirmation when backup cannot cover the risk.
+- Use an explicit checkpoint when required input is missing, tool evidence conflicts, or repeated attempts fail; wait for approval or route to the named owner instead of guessing.
+- For multi-session work, update a progress or HANDOFF artifact with current state, verified result, and next executable step.

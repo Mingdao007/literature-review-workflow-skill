@@ -301,3 +301,12 @@ Then fill the scaffold in this order:
 - Do not treat practical guardrails as formal guarantees.
 - Do not leave citation status ambiguous for anchor papers.
 - Do not let the mainline deck drift into generic `foundation model`, `VLA`, or `policy` survey territory unless the user explicitly expands scope.
+
+
+## Validation And Checkpoints
+
+- Before final handoff, validate the requested artifact or decision against this skill's output contract and report the verification result explicitly.
+- Before any local mutation, pass the recoverability gate: create a rollback point when the change is reversible, and request confirmation when backup cannot cover the risk.
+- Use an explicit checkpoint when required input is missing, tool evidence conflicts, or repeated attempts fail; wait for approval or route to the named owner instead of guessing.
+- For multi-session work, update a progress or HANDOFF artifact with current state, verified result, and next executable step.
+- For L1/default-triggered work, if the path fails or becomes ambiguous, stop the default route, state the failure, and provide recovery options instead of expanding scope silently.

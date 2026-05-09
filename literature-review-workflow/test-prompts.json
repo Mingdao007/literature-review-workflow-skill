@@ -1,0 +1,27 @@
+[
+  {
+    "id": "happy_path_review_workspace",
+    "prompt": "Start a literature review workspace for tactile robotic manipulation papers and prepare taxonomy, corpus, and source-log files.",
+    "expected": "Triggers literature-review-workflow; initializes durable review artifacts and defines scope, corpus, taxonomy, matrix, synthesis, and source log surfaces."
+  },
+  {
+    "id": "non_trigger_single_paper_summary",
+    "prompt": "Summarize this one paper in two paragraphs.",
+    "expected": "Does not force the full literature-review workflow unless the user asks for corpus, taxonomy, screening, or review deliverables."
+  },
+  {
+    "id": "owner_overlap_pdf_extraction",
+    "prompt": "Crop Figure 3 from this PDF exactly.",
+    "expected": "Routes to precise-crop/pdf rather than the literature-review workflow."
+  },
+  {
+    "id": "recoverability_sensitive_workspace_update",
+    "prompt": "Update my existing literature review matrix and slide outline from new papers.",
+    "expected": "Inspects existing workspace first, preserves user-edited artifacts, and records updates in source logs or handoff notes."
+  },
+  {
+    "id": "failure_recovery_missing_sources",
+    "prompt": "Build the final taxonomy, but the paper PDFs are missing.",
+    "expected": "Marks evidence gaps and asks for source lookup or attachment resolution instead of inventing classifications."
+  }
+]

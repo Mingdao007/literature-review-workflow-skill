@@ -1,0 +1,17 @@
+[
+  {
+    "name": "happy-path-routing",
+    "prompt": "Use `review` for this documented task: review-oriented deliverables under literature-review-workflow.",
+    "expected": "Triggers `review`, follows its SKILL.md workflow, and returns the documented output shape without inventing unrelated scope."
+  },
+  {
+    "name": "non-trigger-boundary",
+    "prompt": "This is unrelated to `review`: explain a generic Python syntax error in a toy snippet.",
+    "expected": "Does not trigger `review` and routes to the ordinary coding or explanation path instead."
+  },
+  {
+    "name": "owner-overlap-routing",
+    "prompt": "The request partially overlaps `review` and nested literature-review-workflow review subskill; decide which owner should handle it before acting.",
+    "expected": "Checks owner boundaries first, uses `review` only for its documented surface, and routes adjacent work to the better owner when needed."
+  }
+]

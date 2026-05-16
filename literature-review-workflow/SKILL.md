@@ -200,7 +200,8 @@ For written reviews:
 - open with the final taxonomy
 - then compare anchor papers
 - then state gaps and candidate directions
-- keep editable review source and work files in the normal local research or course workspace; when Zotero `Reviews` handling is in scope, mirror only the final PDF into Zotero and do not place `.tex`, `.md`, `.bib`, build folders, render checks, or other source artifacts there
+- keep editable review source and work files in the normal local research or course workspace; when Zotero `Reviews` handling is in scope and Zotero file sync/WebDAV is expected, add the final PDF as a Zotero stored attachment, not as an absolute linked-file attachment. Do not place `.tex`, `.md`, `.bib`, build folders, render checks, or other source artifacts in Zotero.
+- if older review PDFs under `~/Zotero/Reviews/` exist as standalone linked attachments and need cross-device access, do not change an existing attachment's `linkMode` in place. Zotero rejects that sync transition. Use `scripts/convert_zotero_linked_reviews_to_stored.py`: run it first without `--apply` to audit candidates, close Zotero, then run with `--apply`. The script backs up `zotero.sqlite`, keeps each old linked item as `(legacy linked path)`, creates a fresh stored attachment, preserves collection membership, and leaves source/workspace files unchanged.
 - before every user-visible iteration report on review or report deliverables, run `python3 ~/.codex/skills/ai-detect/scripts/scan_ai_smell.py <file>` on the edited `.tex` / `.md` source files, keep only high-confidence findings after human review, and rerun once after any wording fix
 - when the review has a rendered PDF artifact, run [$visual-deliverable-check](/Users/andyl/.codex/skills/visual-deliverable-check/SKILL.md) before reporting the artifact as ready
 

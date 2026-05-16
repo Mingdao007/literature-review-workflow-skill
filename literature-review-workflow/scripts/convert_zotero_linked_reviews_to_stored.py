@@ -51,8 +51,12 @@ def parse_args() -> argparse.Namespace:
     return parser.parse_args()
 
 
-def connect(db_path: Path) -> sqlite3.Connection:
-    conn = sqlite3.connect(str(db_path), isolation_level=None)
+def connect(db_path: Path, *, read_only: bool) -> sqlite3.Connection:
+    if read_only:
+        uri = f"file:{db_path}?mode=ro&immutable=1"
+        conn = sqlite3.connect(uri, uri=True, isolation_level=None)
+    else:
+        conn = sqlite3.connect(str(db_path), isolation_level=None)
     conn.execute("PRAGMA foreign_keys=ON")
     conn.execute("PRAGMA busy_timeout=1000")
     return conn
@@ -224,7 +228,7 @@ def main() -> int:
     db_path = Path(args.db).expanduser()
     storage_root = db_path.parent / "storage"
 
-    conn = connect(db_path)
+    conn = connect(db_path, read_only=not args.apply)
     cur = conn.cursor()
     candidates = load_candidates(cur, args.reviews_prefix, args.collection_id)
 

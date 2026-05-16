@@ -1,6 +1,6 @@
 ---
 name: literature-review-workflow
-description: "Plan and execute an end-to-end literature review workflow: define scope, build and screen a paper corpus, classify papers into a stable taxonomy, extract evidence into comparison matrices, audit claims and citations, and prepare review deliverable content. Use when the user asks to survey recent papers, write a literature review, compare methods, do paper-by-paper review maintenance, prepare review-deck content, or choose a research direction from papers."
+description: "Plan and execute an end-to-end literature review workflow: define scope, build and screen a paper corpus, classify papers into a stable taxonomy, extract evidence into comparison matrices, audit claims and citations, and prepare review deliverable content. Use when the user asks to survey recent papers, write a literature review, compare methods, do paper-by-paper review maintenance, prepare review-deck content, choose a research direction from papers, or repair Zotero review PDF attachments so course/research review PDFs are stored attachments for cross-device Zotero/WebDAV sync instead of absolute linked files."
 ---
 
 Trigger note: Use when the user asks to do a literature review, survey papers,

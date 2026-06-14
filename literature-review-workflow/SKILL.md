@@ -1,6 +1,6 @@
 ---
 name: literature-review-workflow
-description: "Plan and execute an end-to-end literature review workflow: define scope, build and screen a paper corpus, classify papers into a stable taxonomy, extract evidence into comparison matrices, audit claims and citations, and prepare review deliverable content. Use when the user asks to survey recent papers, write a literature review, compare methods, do paper-by-paper review maintenance, prepare review-deck content, choose a research direction from papers, or repair Zotero review PDF attachments so course/research review PDFs are stored attachments for cross-device Zotero/WebDAV sync instead of absolute linked files."
+description: "Plan and execute literature reviews: scope a topic, build and screen paper corpora, classify methods, extract evidence matrices, audit claims/citations, and prepare review deliverables. Use when the user asks to survey papers, write a literature review, compare methods, maintain paper-by-paper review notes, prepare review decks, choose a research direction from papers, or repair Zotero review PDF attachments for stored-file sync."
 ---
 
 # Literature Review Workflow
@@ -12,7 +12,10 @@ control`, `compare methods in this area`, `literature review`, `帮我调研一�
 
 ## Purpose
 
-Use this skill according to its frontmatter description.
+Use this skill for end-to-end literature review workflows: paper discovery,
+screening, taxonomy design, evidence extraction, claim/citation audit, and
+review deliverable preparation. Route final visual QA and slide authoring to the
+narrower owner skills when those deliverables are in scope.
 
 Keep this `SKILL.md` as a concise routing and execution entrypoint. Do not load
 long examples, command catalogs, detailed checklists, or edge-case policy until
@@ -24,9 +27,9 @@ the current task needs them.
 2. Bind the concrete target: source file, artifact, repo, device, document,
    dataset, or user-facing deliverable.
 3. Use the smallest relevant workflow from this entrypoint first.
-4. Load `references/entrypoint-details.md` when the task needs detailed
-   procedures, examples, command recipes, acceptance criteria, or one of the
-   detailed sections listed below.
+4. Before corpus construction, source screening, taxonomy updates, evidence
+   matrix edits, Zotero review attachment repair, or final deliverable handoff,
+   read `references/entrypoint-details.md`.
 5. Preserve local owner boundaries: route to a narrower skill or repo-specific
    workflow when the detailed reference indicates a more specific owner.
 

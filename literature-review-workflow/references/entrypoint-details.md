@@ -221,7 +221,7 @@ For written reviews:
 - keep editable review source and work files in the normal local research or course workspace; when Zotero `Reviews` handling is in scope and Zotero file sync/WebDAV is expected, add the final PDF as a Zotero stored attachment, not as an absolute linked-file attachment. Do not place `.tex`, `.md`, `.bib`, build folders, render checks, or other source artifacts in Zotero.
 - if older review PDFs under `~/Zotero/Reviews/` exist as standalone linked attachments and need cross-device access, do not change an existing attachment's `linkMode` in place. Zotero rejects that sync transition. Use `scripts/convert_zotero_linked_reviews_to_stored.py`: run it first without `--apply` to audit candidates, close Zotero, then run with `--apply`. The script backs up `zotero.sqlite`, keeps each old linked item as `(legacy linked path)`, creates a fresh stored attachment, preserves collection membership, and leaves source/workspace files unchanged.
 - before every user-visible iteration report on review or report deliverables, run `python3 ~/.codex/skills/ai-detect/scripts/scan_ai_smell.py <file>` on the edited `.tex` / `.md` source files, keep only high-confidence findings after human review, and rerun once after any wording fix
-- when the review has a rendered PDF artifact, run [$visual-deliverable-check](/Users/andyl/.codex/skills/visual-deliverable-check/SKILL.md) before reporting the artifact as ready
+- when the review has a rendered PDF artifact, run `$visual-deliverable-check` before reporting the artifact as ready
 
 For slides:
 
@@ -247,7 +247,7 @@ For slides:
 - if a structure slide becomes crowded, split the slide before shrinking the font aggressively
 - when a paper genuinely serves more than one mechanism line, keep one primary line placement and at most a light secondary-relevance cue; do not duplicate it as another main anchor page
 - for slide-iteration QA, check the rendered PDF pages themselves; do not treat successful compilation or log cleanliness as sufficient evidence that the visual layout is acceptable
-- use [$visual-deliverable-check](/Users/andyl/.codex/skills/visual-deliverable-check/SKILL.md) as the default final visual gate for rendered review decks
+- use `$visual-deliverable-check` as the default final visual gate for rendered review decks
 - treat the slide outline, citations, and evidence matrix as the source package for `academic-presentation`
 - before every user-visible iteration report on deck or source-log deliverables, run `python3 ~/.codex/skills/ai-detect/scripts/scan_ai_smell.py <file>` on the edited deck-authoring or log source files, not on `.pptx` or rendered images; if high-risk wording is found, revise and rerun before handoff
 

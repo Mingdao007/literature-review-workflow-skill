@@ -36,7 +36,7 @@ Use this subskill under `literature-review-workflow` when the final product is a
 - Prioritize the actual authoring source, e.g. `.tex` or `.md`, not the generated `.pdf`.
 - Keep only high-confidence findings after human review.
 - If the scan finds high-risk wording and the text is revised, rerun `ai-detect` at least once before reporting the iteration as updated.
-- If the review is rendered to PDF, run [$visual-deliverable-check](/Users/andyl/.codex/skills/visual-deliverable-check/SKILL.md) before reporting the artifact as ready.
+- If the review is rendered to PDF, run `$visual-deliverable-check` before reporting the artifact as ready.
 - End the user-visible iteration update with one short status line: `ai-detect：已检查，无高风险 AI 味残留。` or `ai-detect：已检查，并已修正高风险措辞后再输出。`
 
 ## Synthesis labeling

@@ -37,7 +37,8 @@ This skill owns the review pipeline upstream of deck authoring.
 
 When the final artifact is a slide deck:
 - use this skill to lock scope, taxonomy, anchors, matrices, and review outline
-- hand off final deck authoring to `academic-presentation`
+- hand off final deck authoring to the current live presentation owner; load
+  dormant deck helpers only on exact user invocation
 
 Default outputs:
 
@@ -226,7 +227,8 @@ For written reviews:
 For slides:
 
 - prepare the classification, comparison logic, citations, and outline first
-- hand off final slide authoring to `academic-presentation`
+- hand off final slide authoring to the current live presentation owner; load
+  dormant deck helpers only on exact user invocation
 - one idea per slide
 - no process narration such as “how I searched” unless the user asks for it
 - default to a minimal title page: keep the main title plus one short course/topic line unless the user explicitly wants author, institution, or subtitle metadata
@@ -248,7 +250,8 @@ For slides:
 - when a paper genuinely serves more than one mechanism line, keep one primary line placement and at most a light secondary-relevance cue; do not duplicate it as another main anchor page
 - for slide-iteration QA, check the rendered PDF pages themselves; do not treat successful compilation or log cleanliness as sufficient evidence that the visual layout is acceptable
 - use `$visual-deliverable-check` as the default final visual gate for rendered review decks
-- treat the slide outline, citations, and evidence matrix as the source package for `academic-presentation`
+- treat the slide outline, citations, and evidence matrix as the source package
+  for the current live presentation owner
 - before every user-visible iteration report on deck or source-log deliverables, run `python3 ~/.codex/skills/ai-detect/scripts/scan_ai_smell.py <file>` on the edited deck-authoring or log source files, not on `.pptx` or rendered images; if high-risk wording is found, revise and rerun before handoff
 
 ### 8. Audit before handoff

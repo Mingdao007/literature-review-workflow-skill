@@ -2,26 +2,76 @@
   {
     "id": "happy_path_review_workspace",
     "prompt": "Start a literature review workspace for tactile robotic manipulation papers and prepare taxonomy, corpus, and source-log files.",
-    "expected": "Triggers literature-review-workflow; initializes durable review artifacts and defines scope, corpus, taxonomy, matrix, synthesis, and source log surfaces."
+    "expected": "Triggers literature-review-workflow; initializes durable review artifacts and defines scope, corpus, taxonomy, matrix, synthesis, and source log surfaces.",
+    "name": "happy_path_review_workspace",
+    "expected_behaviors": [
+      "trigger_precision",
+      "Triggers literature-review-workflow; initializes durable review artifacts and defines scope, corpus, taxonomy, matrix, synthesis, and source log surfaces."
+    ],
+    "forbidden_behaviors": [
+      "route_elsewhere"
+    ],
+    "verification_mode": "manual_contract_review",
+    "should_trigger": true
   },
   {
     "id": "non_trigger_single_paper_summary",
     "prompt": "Summarize this one paper in two paragraphs.",
-    "expected": "Does not force the full literature-review workflow unless the user asks for corpus, taxonomy, screening, or review deliverables."
+    "expected": "Does not force the full literature-review workflow unless the user asks for corpus, taxonomy, screening, or review deliverables.",
+    "name": "non_trigger_single_paper_summary",
+    "expected_behaviors": [
+      "trigger_precision",
+      "Does not force the full literature-review workflow unless the user asks for corpus, taxonomy, screening, or review deliverables."
+    ],
+    "forbidden_behaviors": [
+      "route_elsewhere"
+    ],
+    "verification_mode": "manual_contract_review",
+    "should_trigger": true
   },
   {
     "id": "owner_overlap_pdf_extraction",
     "prompt": "Crop Figure 3 from this PDF exactly.",
-    "expected": "Routes to precise-crop/pdf rather than the literature-review workflow."
+    "expected": "Routes to precise-crop/pdf rather than the literature-review workflow.",
+    "name": "owner_overlap_pdf_extraction",
+    "expected_behaviors": [
+      "trigger_precision",
+      "Routes to precise-crop/pdf rather than the literature-review workflow."
+    ],
+    "forbidden_behaviors": [
+      "route_elsewhere"
+    ],
+    "verification_mode": "manual_contract_review",
+    "should_trigger": true
   },
   {
     "id": "recoverability_sensitive_workspace_update",
     "prompt": "Update my existing literature review matrix and slide outline from new papers.",
-    "expected": "Inspects existing workspace first, preserves user-edited artifacts, and records updates in source logs or handoff notes."
+    "expected": "Inspects existing workspace first, preserves user-edited artifacts, and records updates in source logs or handoff notes.",
+    "name": "recoverability_sensitive_workspace_update",
+    "expected_behaviors": [
+      "trigger_precision",
+      "Inspects existing workspace first, preserves user-edited artifacts, and records updates in source logs or handoff notes."
+    ],
+    "forbidden_behaviors": [
+      "route_elsewhere"
+    ],
+    "verification_mode": "manual_contract_review",
+    "should_trigger": true
   },
   {
     "id": "failure_recovery_missing_sources",
     "prompt": "Build the final taxonomy, but the paper PDFs are missing.",
-    "expected": "Marks evidence gaps and asks for source lookup or attachment resolution instead of inventing classifications."
+    "expected": "Marks evidence gaps and asks for source lookup or attachment resolution instead of inventing classifications.",
+    "name": "failure_recovery_missing_sources",
+    "expected_behaviors": [
+      "trigger_precision",
+      "Marks evidence gaps and asks for source lookup or attachment resolution instead of inventing classifications."
+    ],
+    "forbidden_behaviors": [
+      "route_elsewhere"
+    ],
+    "verification_mode": "manual_contract_review",
+    "should_trigger": true
   }
 ]

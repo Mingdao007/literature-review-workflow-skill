@@ -2,16 +2,46 @@
   {
     "name": "happy-path-routing",
     "prompt": "Use `review` for this documented task: review-oriented deliverables under literature-review-workflow.",
-    "expected": "Triggers `review`, follows its SKILL.md workflow, and returns the documented output shape without inventing unrelated scope."
+    "expected": "Triggers `review`, follows its SKILL.md workflow, and returns the documented output shape without inventing unrelated scope.",
+    "id": "happy-path-routing",
+    "expected_behaviors": [
+      "trigger_precision",
+      "Triggers `review`, follows its SKILL.md workflow, and returns the documented output shape without inventing unrelated scope."
+    ],
+    "forbidden_behaviors": [
+      "route_elsewhere"
+    ],
+    "verification_mode": "manual_contract_review",
+    "should_trigger": true
   },
   {
     "name": "non-trigger-boundary",
     "prompt": "This is unrelated to `review`: explain a generic Python syntax error in a toy snippet.",
-    "expected": "Does not trigger `review` and routes to the ordinary coding or explanation path instead."
+    "expected": "Does not trigger `review` and routes to the ordinary coding or explanation path instead.",
+    "id": "non-trigger-boundary",
+    "expected_behaviors": [
+      "non_trigger",
+      "Does not trigger `review` and routes to the ordinary coding or explanation path instead."
+    ],
+    "forbidden_behaviors": [
+      "trigger_precision"
+    ],
+    "verification_mode": "manual_contract_review",
+    "should_trigger": false
   },
   {
     "name": "owner-overlap-routing",
     "prompt": "The request partially overlaps `review` and nested literature-review-workflow review subskill; decide which owner should handle it before acting.",
-    "expected": "Checks owner boundaries first, uses `review` only for its documented surface, and routes adjacent work to the better owner when needed."
+    "expected": "Checks owner boundaries first, uses `review` only for its documented surface, and routes adjacent work to the better owner when needed.",
+    "id": "owner-overlap-routing",
+    "expected_behaviors": [
+      "trigger_precision",
+      "Checks owner boundaries first, uses `review` only for its documented surface, and routes adjacent work to the better owner when needed."
+    ],
+    "forbidden_behaviors": [
+      "route_elsewhere"
+    ],
+    "verification_mode": "manual_contract_review",
+    "should_trigger": true
   }
 ]

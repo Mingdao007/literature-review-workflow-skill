@@ -23,14 +23,13 @@ the current task needs them.
 
 ## Workflow
 
-1. Confirm the user request matches this skill's frontmatter description.
-2. Bind the concrete target: source file, artifact, repo, device, document,
+1. Bind the concrete target: source file, artifact, repo, device, document,
    dataset, or user-facing deliverable.
-3. Use the smallest relevant workflow from this entrypoint first.
-4. Before corpus construction, source screening, taxonomy updates, evidence
+2. Use the smallest relevant workflow from this entrypoint first.
+3. Before corpus construction, source screening, taxonomy updates, evidence
    matrix edits, Zotero review attachment repair, or final deliverable handoff,
    read `references/entrypoint-details.md`.
-5. Preserve local owner boundaries: route to a narrower skill or repo-specific
+4. Preserve local owner boundaries: route to a narrower skill or repo-specific
    workflow when the detailed reference indicates a more specific owner.
 
 ## Detailed Reference
